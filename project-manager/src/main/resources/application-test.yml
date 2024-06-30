@@ -1,0 +1,65 @@
+server:
+  port: 8501
+
+# 配置数据库连接信息
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3308/db_edu_project?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 129089
+  # Redis的相关配置
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+  #  password: 1234
+  security:
+    filter:
+      order: 10
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*/*.xml
+  type-aliases-package: cn.edu.xcu.model.entity
+  mapper-scan-package: cn.edu.xcu.manager.mapper
+  configuration:
+    map-underscore-to-camel-case: true  # 开启驼峰命名
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: delete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# mybatis的配置
+#mybatis:
+#  config-location: classpath:/mybatis-config.xml
+#  mapper-locations: classpath:/mapper/*/*.xml
+
+project:
+  auth:
+    noAuthUrls:
+      - /admin/acl/index/login
+      - /admin/acl/index/captcha
+      - /swagger-resources/**
+      - /swagger-ui.html
+      - /v2/api-docs
+      - /v3/api-docs
+      - /webjars/**
+      - /doc.html
+  minio:
+    endpointUrl: http://127.0.0.1:9000
+    accessKey: minioadmin
+    secreKey: minioadmin
+    bucketName: project-bucket
+# 日志级别
+logging:
+  level:
+    com.baomidou.mybatisplus: debug
+    cn.edu.xcu.hhb.manager.mapper: debug
+
+
+
+secret: FXkSfjjAJMsvG2fNm1BS6AwL39R/R+e8Q/+cRZIQlLA=
+expiration: 86400

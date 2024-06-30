@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.xcu.manager.mapper.ProductDetailsMapper">
+    <!--  映射查询到的字段 -->
+    <resultMap id="ProductDeatilsMap" type="cn.edu.xcu.yky.model.entity.product.ProductDetails" autoMapping="true">
+    </resultMap>
+
+    <!-- useGeneratedKeys="true" keyProperty="id" 回写ID到Product中  -->
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into product_details (
+        id,
+        product_id,
+        image_urls,
+        create_time,update_time,is_deleted
+        ) values (
+        #{id},
+        #{productId},
+        #{imageUrls},
+        now(),
+        now(),
+        0
+        )
+    </insert>
+
+    <select id="findProductDetailsByProductId" resultMap="ProductDeatilsMap">
+        select *
+        from product_details
+        where product_id = #{id}
+        and is_deleted = 0
+    </select>
+
+    <update id="updateByProductId">
+        update product_details set
+        <if test="productId != null and productId != ''">
+            product_id = #{productId},
+        </if>
+        <if test="imageUrls != null and imageUrls != ''">
+            image_urls = #{imageUrls},
+        </if>
+        update_time = now()
+        where
+        id = #{id}
+    </update>
+</mapper>

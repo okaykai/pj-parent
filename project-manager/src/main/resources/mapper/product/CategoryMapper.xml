@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.xcu.manager.mapper.CategoryMapper">
+    <!--  映射查询到的字段 -->
+    <resultMap id="CategoryMap" type="cn.edu.xcu.yky.model.entity.product.Category" autoMapping="true">
+    </resultMap>
+</mapper>
